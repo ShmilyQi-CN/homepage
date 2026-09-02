@@ -199,12 +199,14 @@
   </section>
 
   <section>
-    <h2>结果</h2>
+    <h2>结果:已通过 95 分终稿门禁的项目</h2>
+    <p class="lede">以下课题由集群<b>全自主完成</b>并通过终稿评审(三评委 × 10 维实质评分,均分 ≥95 且无单维 &lt;85)——不过线的项目会一直循环补实验补证明,过不了就如实标记天花板,绝不刷分。</p>
     <div class="pubs">
-      <div class="pub"><span class="v">CVPR Findings 2026</span><span class="t"><b>RealDiffusion</b>:物理约束注意力的多角色故事书生成</span></div>
-      <div class="pub"><span class="v">AAAI 2026</span><span class="t"><b>G-IR</b>:面向学习的几何图像表示(共同一作)</span></div>
-      <div class="pub"><span class="v">ISVC 2025</span><span class="t"><b>ColonMeshNet</b>:局部-全局上下文融合的 3D 结肠分割</span></div>
-      <div class="pub"><span class="v rev">在投 ×4</span><span class="t">文档去卷曲 / 约束半离散最优传输 / 多图叙事幻觉抑制 / 联邦医学影像</span></div>
+      <div class="pub"><span class="v">评审 97.1</span><span class="t"><b>周期密线约束的均匀化半离散最优传输</b>:有效运输代价的 ε 尺度定量收敛率</span></div>
+      <div class="pub"><span class="v">评审 96.1</span><span class="t"><b>共形因子-Laguerre 权重联立的抗噪半离散 QC-OT</b>:松弛 Beltrami 罚</span></div>
+      <div class="pub"><span class="v">评审 96.0</span><span class="t"><b>多连通曲面上的全局周期一致半离散 OT</b>:以同调基上的调和 1-形式通量约束替代局部约束</span></div>
+      <div class="pub"><span class="v">评审 95.9</span><span class="t"><b>亏格 0 开曲面的统一拟共形约束框架</b></span></div>
+      <div class="pub"><span class="v rev">攻坚中</span><span class="t">Ricci flow 双层优化约束参数化 / 视频扩散防撕裂采样 / 三模态多边际 GW 对齐等——未过线,循环迭代中</span></div>
     </div>
     <div class="stats">
       <div class="stat"><div class="num">9</div><div class="lbl">流水线阶段</div></div>
@@ -241,7 +243,11 @@
   }
   var i=0;
   function next(){
-    if(i>=lines.length){el.insertAdjacentHTML('beforeend','<span class="cursor"></span>');return;}
+    if(i>=lines.length){                     // 播完:光标闪 6 秒,清屏循环重播
+      el.insertAdjacentHTML('beforeend','<span class="cursor"></span>');
+      setTimeout(function(){el.innerHTML='';i=0;next();},6000);
+      return;
+    }
     var d=document.createElement('div');d.className=lines[i][0];el.appendChild(d);
     var txt=lines[i][1],j=0;
     var t=setInterval(function(){

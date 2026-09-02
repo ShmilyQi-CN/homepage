@@ -1,0 +1,312 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>赵启 Qi Zhao · 学术主页</title>
+<link rel="stylesheet" href="hpstatic/katex/katex.min.css">
+<script defer src="hpstatic/katex/katex.min.js"></script>
+<script defer src="hpstatic/katex/contrib/auto-render.min.js" onload="window.__ktx=1;if(window.typeset)typeset()"></script>
+<style>
+  :root{
+    --bg:#0B0E14; --bg2:#0E1219; --surface:#141926; --surface2:#1A2130;
+    --line:#232C3D; --ink:#EAEEF6; --ink-soft:#A7B0C2; --faint:#697086;
+    --accent:#5FC7DE; --accent2:#8B7BE8; --gold:#E4B363; --green:#6FCF97;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink); overflow-x:hidden;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+    line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:inherit}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 clamp(1.1rem,4vw,2rem)}
+  .serif{font-family:"Iowan Old Style",Georgia,"Songti SC","Noto Serif CJK SC",serif}
+
+  /* HERO */
+  .hero{position:relative; min-height:86vh; display:flex; align-items:center; overflow:hidden}
+  #geo{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+  .hero::after{content:""; position:absolute; inset:0; z-index:1; background:radial-gradient(120% 80% at 15% 10%, transparent 30%, var(--bg) 92%)}
+  .hero-in{position:relative; z-index:2; width:100%}
+  .kicker{font-size:.78rem; letter-spacing:.28em; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:1.2rem}
+  h1.name{font-family:"Iowan Old Style",Georgia,"Songti SC",serif; font-weight:600; letter-spacing:-.02em; font-size:clamp(3rem,9vw,6rem); line-height:.98; margin:0}
+  h1.name .en{display:block; font-size:.42em; letter-spacing:.02em; color:var(--ink-soft); margin-top:.5rem; font-weight:400}
+  .title{margin:1.6rem 0 0; font-size:clamp(1rem,2.4vw,1.3rem); color:var(--ink-soft); max-width:52ch}
+  .tags{display:flex; flex-wrap:wrap; gap:.55rem; margin:1.7rem 0 0}
+  .chip{font-size:.82rem; padding:.4rem .95rem; border:1px solid var(--line); border-radius:2rem; background:color-mix(in srgb,var(--surface) 60%,transparent); backdrop-filter:blur(6px); color:var(--ink-soft)}
+  .contact{display:flex; flex-wrap:wrap; gap:1.5rem; margin:2.2rem 0 0; font-size:.9rem; color:var(--faint)}
+  .contact a,.contact span{display:inline-flex; align-items:center; gap:.5rem}
+  .contact b{color:var(--ink-soft); font-weight:500; font-variant-numeric:tabular-nums}
+
+  section.blk{padding:clamp(3.5rem,7vw,6rem) 0}
+  .blk-head{display:flex; align-items:baseline; gap:1rem; margin-bottom:2rem}
+  .blk-head .idx{font-family:Georgia,serif; color:var(--accent); font-size:1rem; font-weight:700}
+  .blk-head h2{font-family:"Iowan Old Style",Georgia,"Songti SC",serif; font-size:clamp(1.5rem,3.2vw,2rem); margin:0; font-weight:600; letter-spacing:-.01em}
+  .blk-head .rule{flex:1; height:1px; background:var(--line); align-self:center}
+
+  /* 研究模块分区 */
+  .pubmod{margin-bottom:2.8rem}
+  .pubmod .mh{display:flex; align-items:baseline; gap:.7rem; margin:0 0 1.2rem; padding-bottom:.55rem; border-bottom:1px dashed var(--line)}
+  .pubmod .mh .dot{width:9px; height:9px; border-radius:2px; flex:none; transform:translateY(1px)}
+  .pubmod .mh b{font-size:1.08rem; color:var(--ink); font-weight:600}
+  .pubmod .mh .ct{font-size:.78rem; color:var(--faint); font-weight:400}
+
+  /* 富项目卡 */
+  .cards{columns:1; column-gap:1.3rem}
+  @media(min-width:760px){.cards{columns:2}}
+  .card{background:linear-gradient(165deg,var(--surface),var(--bg2)); border:1px solid var(--line); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; transition:transform .2s,border-color .2s,box-shadow .2s; break-inside:avoid; margin-bottom:1.3rem}
+  .card:hover{transform:translateY(-3px); border-color:color-mix(in srgb,var(--accent) 55%,var(--line)); box-shadow:0 16px 40px -20px color-mix(in srgb,var(--accent) 55%,transparent)}
+  .card .cover{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:top center; background:var(--bg2); border-bottom:1px solid var(--line); display:block}
+  .card .nocover{width:100%; aspect-ratio:16/9; background:
+      repeating-linear-gradient(135deg, color-mix(in srgb,var(--accent) 6%,var(--bg2)) 0 14px, var(--bg2) 14px 28px);
+      display:flex; align-items:center; justify-content:center; color:var(--faint); font-size:.8rem; border-bottom:1px solid var(--line); letter-spacing:.05em}
+  .card .figs{columns:2; column-gap:2px; background:var(--bg2); border-bottom:1px solid var(--line)}
+  .card .figs:has(.fig:only-child){columns:1}
+  .card .fig{margin:0 0 2px; break-inside:avoid; position:relative; cursor:zoom-in}
+  .card .fig.wide{column-span:all}   /* 超宽横幅图(宽>2.2×高)独占整行,不塞半列 */
+  .card .fig img{width:100%; height:auto; display:block; background:#fff; transition:opacity .2s}
+  .card .fig:hover img{opacity:.9}
+  .card .fig figcaption{position:absolute; top:.5rem; left:.5rem; font-size:.66rem; padding:.16rem .5rem; border-radius:5px; background:rgba(11,14,20,.82); color:var(--accent); backdrop-filter:blur(4px); font-weight:600}
+  /* lightbox:点击图全屏放大,可切换 */
+  .lb{position:fixed; inset:0; background:rgba(5,8,12,.94); z-index:99; display:none; align-items:center; justify-content:center; flex-direction:column; gap:.9rem; padding:1.5rem}
+  .lb.on{display:flex}
+  .lb img{max-width:94vw; max-height:80vh; object-fit:contain; border-radius:10px; background:#fff}
+  .lb .cap{color:var(--ink-soft); font-size:.92rem; max-width:80ch; text-align:center}
+  .lb .nav{display:flex; gap:.9rem; align-items:center}
+  .lb .nav button{background:var(--surface); border:1px solid var(--line); color:var(--ink); border-radius:8px; padding:.45rem 1.1rem; font:inherit; cursor:pointer}
+  .lb .nav .cnt{color:var(--faint); font-size:.85rem; font-variant-numeric:tabular-nums}
+  .card .hlt{font-size:.74rem; font-weight:600; letter-spacing:.04em; margin-top:.5rem; margin-bottom:.15rem}
+  .card .hlt.inno{color:var(--accent)} .card .hlt.res{color:var(--green)}
+  .card .body{padding:1.25rem 1.4rem 1.4rem; display:flex; flex-direction:column; gap:.6rem; flex:1}
+  .card .toprow{display:flex; align-items:center; gap:.6rem}
+  .card .tag{font-size:.68rem; letter-spacing:.06em; padding:.22rem .6rem; border-radius:5px; font-weight:600}
+  .tag.j{background:color-mix(in srgb,var(--gold) 18%,transparent); color:var(--gold)}
+  .tag.c{background:color-mix(in srgb,var(--accent) 18%,transparent); color:var(--accent)}
+  .tag.pt{background:color-mix(in srgb,var(--accent2) 18%,transparent); color:var(--accent2)}
+  .tag.r{background:color-mix(in srgb,var(--green) 16%,transparent); color:var(--green)}
+  .card .yr{margin-left:auto; font-family:Georgia,serif; font-size:.82rem; color:var(--faint); font-variant-numeric:tabular-nums}
+  .card h3{font-size:1.04rem; line-height:1.4; margin:.1rem 0 0; color:var(--ink); font-weight:600}
+  .card .au{font-size:.83rem; color:var(--ink-soft)}
+  .card .ve{font-size:.8rem; color:var(--faint); font-style:italic}
+  .card .summary{font-size:.9rem; color:var(--ink-soft); line-height:1.6}
+  .card .hl{display:flex; flex-direction:column; gap:.3rem; margin-top:.1rem}
+  .card .hl .h{position:relative; padding-left:1.05rem; font-size:.85rem; color:var(--ink-soft)}
+  .card .hl .h::before{content:"▹"; position:absolute; left:0; color:var(--green)}
+  .card .links{display:flex; gap:.9rem; margin-top:auto; padding-top:.5rem}
+  .card .links a{font-size:.8rem; color:var(--accent); text-decoration:none; display:inline-flex; gap:.35rem; align-items:center; border-bottom:1px solid transparent; transition:border-color .15s}
+  .card .links a:hover{border-color:var(--accent)}
+  .card .links a.dim{color:var(--faint)}
+
+  /* 经历时间线 */
+  .tl{display:flex; flex-direction:column; gap:1.1rem}
+  .tl .row{display:grid; grid-template-columns:minmax(140px,180px) 1fr; gap:1.2rem; padding-bottom:1.1rem; border-bottom:1px solid var(--line)}
+  .tl .row:last-child{border-bottom:0}
+  .tl .when{font-size:.82rem; color:var(--faint); font-variant-numeric:tabular-nums; padding-top:.15rem}
+  .tl .what b{display:block; color:var(--ink); font-weight:600; margin-bottom:.15rem}
+  .tl .what .sub{font-size:.86rem; color:var(--ink-soft)}
+  .tl .what .meta{font-size:.8rem; color:var(--faint); margin-top:.3rem}
+  @media(max-width:560px){.tl .row{grid-template-columns:1fr; gap:.3rem}}
+  .honors{display:flex; flex-wrap:wrap; gap:.7rem}
+  .honor{background:var(--surface); border:1px solid var(--line); border-radius:9px; padding:.7rem 1rem; font-size:.88rem; color:var(--ink-soft); display:flex; align-items:center; gap:.7rem}
+  .honor .d{font-size:.76rem; color:var(--faint); font-variant-numeric:tabular-nums}
+
+  .grid2{display:grid; grid-template-columns:1fr; gap:clamp(2.5rem,6vw,4rem)}
+  @media(min-width:820px){.grid2{grid-template-columns:1fr 1fr}}
+  footer{padding:3rem 0 4rem; border-top:1px solid var(--line); color:var(--faint); font-size:.82rem; text-align:center; margin-top:2rem}
+</style>
+
+<div class="hero">
+  <canvas id="geo"></canvas>
+  <div class="hero-in wrap">
+    <div class="kicker">Computational Geometry · Optimal Transport · AI</div>
+    <h1 class="name">赵启<span class="en">Qi Zhao</span></h1>
+    <p class="title">西安交通大学 数学与统计学院 博士在读 · 导师 曾薇。研究计算几何、优化、AI 算法与视觉模型。</p>
+    <div class="tags" id="interests"></div>
+    <div class="contact">
+      <a href="mailto:1046400969@qq.com">✉ <b>1046400969@qq.com</b></a>
+      
+      <span>📍 <b>西安</b></span>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="blk">
+    <div class="blk-head"><span class="idx">01</span><h2>科研项目 · Research</h2><span class="rule"></span></div>
+    <div id="pubmods"></div>
+  </section>
+
+  <section class="blk">
+    <div class="blk-head"><span class="idx">02</span><h2>教育经历 · Education</h2><span class="rule"></span></div>
+    <div class="tl" id="edu"></div>
+  </section>
+
+  <section class="blk">
+    <div class="grid2">
+      <div>
+        <div class="blk-head"><span class="idx">03</span><h2>实习经历 · Experience</h2></div>
+        <div class="tl" id="intern"></div>
+      </div>
+      <div>
+        <div class="blk-head"><span class="idx">04</span><h2>学生工作 · Activities</h2></div>
+        <div class="tl" id="activities"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <div class="blk-head"><span class="idx">05</span><h2>荣誉奖项 · Honors</h2><span class="rule"></span></div>
+    <div class="honors" id="honors"></div>
+  </section>
+</main>
+
+<footer>© 2026 赵启 Qi Zhao · 西安交通大学 · 数据可在后台维护</footer>
+
+<div class="lb" id="lb" onclick="if(event.target===this)lbClose()">
+  <img id="lbImg" alt="">
+  <div class="cap" id="lbCap"></div>
+  <div class="nav">
+    <button onclick="lbStep(-1)">← 上一张</button>
+    <span class="cnt" id="lbCnt"></span>
+    <button onclick="lbStep(1)">下一张 →</button>
+    <button onclick="lbClose()">关闭 ✕</button>
+  </div>
+</div>
+
+<script>
+const DATA={
+  interests:["计算几何","优化","AI 算法","视觉模型"],
+  publications:[
+    {module:"几何处理与网格",type:"journal",year:2024,tag:"CCF A",authors:"赵启, 曾薇, 杨义军",title:"区域划分在自相交多边形分解算法中的应用",venue:"计算机辅助设计与图形学学报, 2024, 35(12):1910",doi:"10.3724/SP.J.1089.2023.2023-00040",summary:"提出基于区域划分的自相交多边形分解算法,把复杂自相交多边形稳健地拆解为简单多边形。",highlights:[]},
+    {module:"几何处理与网格",type:"conf",year:2024,authors:"Qi Zhao, Qiyue Ma, Yijun Yang, Wei Zeng",title:"Curve-Constrained Surface Quadrilateral Mesh Generation",venue:"GDC (16th National Conf. on Geometric Design and Computing), 2024",summary:"在给定曲线约束下生成对齐曲线的曲面四边形网格。",highlights:[]},
+    {module:"几何处理与网格",type:"inreview",tag:"在投",authors:"Qi Zhao, Yixiao Yan, Wei Zeng",title:"DocQCMap: Document Image Dewarping via Quasiconformal Map",summary:"用拟共形映射矫正文档图像的几何形变(document dewarping)。",highlights:[]},
+    {module:"几何处理与网格",type:"patent",tag:"专利",authors:"曾薇, 杨义军, 赵启, 闫艺潇",title:"一种拟共形映射图像矫正方法及系统",venue:"CN118333911A",summary:"一种基于拟共形映射的图像矫正方法与系统。",highlights:[]},
+    {module:"最优传输",type:"inreview",tag:"在投",authors:"Qi Zhao, Kefan Yu, Wei Zeng",title:"C-SDOT: A Geometric Approach to Constrained Semi-Discrete Optimal Transport",summary:"带约束的半离散最优传输:让 power diagram 的 cell 质心落到指定的点、线、曲线上,用于配准与特征驱动重网格。",highlights:[]},
+    {module:"最优传输",type:"patent",tag:"专利",authors:"曾薇, 常学斌, 曹钰洁, 赵启, 李成效, 古祥, 孙剑, 徐宗本",title:"一种基于点约束最优传输的脑图谱映射方法和相关设备",venue:"CN117670947A",summary:"基于点约束最优传输的脑图谱映射方法及相关设备。",highlights:[]},
+    {module:"AI 生成与视觉",type:"conf",year:2026,tag:"AAAI · 共一",authors:"Xin Chen, Qi Zhao (Co-first), Wei Zeng, et al.",title:"G-IR: Geometric Image Representation for Learning",venue:"AAAI, 2026, 40(24):20307-20315",summary:"面向学习的几何图像表示(Geometric Image Representation)。",highlights:[]},
+    {module:"AI 生成与视觉",type:"conf",year:2026,tag:"CVPR",authors:"Qi Zhao, Jun Chen, Ivor Tsang, Guang Dai",title:"RealDiffusion: Physics-informed Attention for Multi-character Storybook Generation",venue:"CVPR Findings, 2026",summary:"用物理信息注意力做多角色绘本生成的扩散模型。",highlights:[]},
+    {module:"AI 生成与视觉",type:"inreview",tag:"在投",authors:"Qi Zhao, Jun Chen, Ivor Tsang, Guang Dai, Haishan Ye, Sizhe Dang",title:"Causal Storytelling: Dual-Branch Contrastive Decoding for Text-image Hallucination Mitigation in Multi-Image Story",summary:"双分支对比解码,缓解多图故事生成中的文图幻觉。",highlights:[]},
+    {module:"医学影像",type:"conf",year:2025,authors:"Qi Zhao, Qiyue Ma, Riqian Li, Wei Zeng",title:"ColonMeshNet: Fusing Local and Global Context for Accurate 3D Colon Segmentation",venue:"ISVC, pp.337-349, Springer, 2025",summary:"融合局部与全局上下文的高精度 3D 结肠分割。",highlights:[]},
+    {module:"医学影像",type:"inreview",tag:"在投",authors:"Qi Zhao, Guang Dai, Ivor Tsang, Haishan Ye, Sizhe Dang, Zhishen Sun, Jun Chen",title:"FedCARD: Federated Causal Atlas-invariance Representation for Cross-Site Neurodevelopmental Disorders",summary:"联邦因果图谱不变表示,用于跨站点神经发育障碍分析。",highlights:[]},
+    {module:"其他",type:"patent",tag:"专利",authors:"曾薇, 杨义军, 于可凡, 赵启",title:"一种矢量地图脱密方法、系统、设备和存储介质",venue:"CN118627088A",summary:"一种矢量地图脱密方法、系统、设备与存储介质。",highlights:[]},
+  ],
+  education:[
+    {when:"2022.09 – 至今",title:"数学 博士",sub:"西安交通大学 · 数学与统计学院",meta:"导师:曾薇 · 凸分析与优化、非线性分析、黎曼几何、机器学习、计算机数学"},
+    {when:"2018.09 – 2022.06",title:"计算机科学与技术 本科",sub:"西安交通大学 · 电信学部",meta:"GPA 3.7/4.3 · 专业排名 35/171"},
+  ],
+  internships:[
+    {when:"2025.04 – 2026.08",title:"AI 算法工程师",sub:"陕西思极科技有限公司",meta:"西安"},
+    {when:"2021.01 – 2021.04",title:"软件开发工程师(实习)",sub:"华为 · 云核心网",meta:"西安"},
+  ],
+  activities:[
+    {when:"2019.06 – 2020.06",title:"社团发展研究部 部长",sub:"西安交通大学 · 社团指导中心",meta:""},
+    {when:"2020.08 – 2021.07",title:"朋辈辅导员 · 辅导员助理",sub:"",meta:""},
+  ],
+  honors:[
+    {name:"优秀毕业生",date:"2022.06"},{name:"蓝桥杯大赛 省二等奖",date:"2020.11"},
+    {name:"数学建模国赛 省二等奖",date:"2020.11"},{name:"优秀学生干部",date:"2019.06"},
+  ],
+};
+const FIGMAP={};   // 卡片图注册表:pid -> figures[],供 lightbox 用
+const TAGCLS={journal:"j",conf:"c",patent:"pt",inreview:"r"};
+const MOD_ORDER=["几何处理与网格","最优传输","AI 生成与视觉","医学影像","其他"];
+const MOD_COLOR={"几何处理与网格":"var(--accent)","最优传输":"var(--accent2)","AI 生成与视觉":"var(--gold)","医学影像":"var(--green)","其他":"var(--faint)"};
+const esc=s=>(s||"").replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function pubCard(p){
+  const links=[];
+  if(p.pdf)links.push(`<a href="/hp/pdf/${encodeURIComponent(p.pdf)}">↓ PDF</a>`);
+  if(p.doi){const u=/^https?:\/\//i.test(p.doi)?p.doi:"https://doi.org/"+p.doi;
+    links.push(`<a href="${esc(u)}" target="_blank" rel="noopener">论文链接</a>`);}
+  if(p.github)links.push(`<a class="dim" href="${esc(p.github)}" target="_blank" rel="noopener">◈ Code</a>`);
+  const figs=(p.figures&&p.figures.length)?p.figures:(p.cover?[{fn:p.cover,type:""}]:[]);
+  if(figs.length)FIGMAP[p.id||p.title]=figs;
+  const fkey=p.id||p.title;
+  const figHtml=figs.length
+    ? `<div class="figs">${figs.map((f,i)=>`<figure class="fig" onclick="openLB('${(fkey+"").replace(/'/g,"")}',${i})"><img src="covers/${encodeURIComponent(f.fn.replace(/\.webp$/,".t.webp"))}" onload="if(this.naturalWidth>this.naturalHeight*2.2)this.closest('.fig').classList.add('wide')" onerror="if(!this.dataset.o){this.dataset.o=1;this.src='covers/${encodeURIComponent(f.fn)}'}else{this.closest('.fig').remove()}"></figure>`).join("")}</div>`
+    : `<div class="nocover">上传 PDF 后自动提流程图 / 结果图</div>`;
+  const tag=p.tag||(p.type==="inreview"?"在投":p.type==="patent"?"专利":"论文");
+  const blk=(t,cls,arr)=>(arr&&arr.length)?`<div class="hl"><div class="hlt ${cls}">${t}</div>${arr.map(h=>`<div class="h">${esc(h)}</div>`).join("")}</div>`:"";
+  return `<article class="card">
+    ${figHtml}
+    <div class="body">
+      <div class="toprow"><span class="tag ${TAGCLS[p.type]||"c"}">${esc(tag)}</span>${p.year?`<span class="yr">${p.year}</span>`:""}</div>
+      <h3>${esc(p.title)}</h3>
+      <div class="au">${esc(p.authors)}</div>
+      ${p.venue?`<div class="ve">${esc(p.venue)}</div>`:""}
+      ${blk("创新点","inno",p.innovation)}
+      ${blk("实验结果","res",p.results)}
+      ${(!p.innovation&&!p.results&&p.summary)?`<div class="summary">${esc(p.summary)}</div>`:""}
+      ${links.length?`<div class="links">${links.join("")}</div>`:""}
+    </div>
+  </article>`;
+}
+const tlRow=r=>`<div class="row"><div class="when">${esc(r.when)}</div><div class="what"><b>${esc(r.title)}</b>${r.sub?`<span class="sub">${esc(r.sub)}</span>`:""}${r.meta?`<div class="meta">${esc(r.meta)}</div>`:""}</div></div>`;
+
+function render(D){
+  document.getElementById("interests").innerHTML=(D.interests||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join("");
+  const pubs=D.publications||[], groups={};
+  for(const p of pubs){const m=p.module||"其他";(groups[m]=groups[m]||[]).push(p);}
+  const inrev=p=>p.type==="inreview"||/在投/.test(p.tag||"");
+  Object.values(groups).forEach(g=>g.sort((a,b)=>inrev(a)-inrev(b)));  // 每类里在投沉底
+  const mods=[...MOD_ORDER.filter(m=>groups[m]),...Object.keys(groups).filter(m=>!MOD_ORDER.includes(m))];
+  document.getElementById("pubmods").innerHTML=mods.map(m=>`
+    <div class="pubmod">
+      <div class="mh"><span class="dot" style="background:${MOD_COLOR[m]||"var(--accent)"}"></span><b>${esc(m)}</b><span class="ct">${groups[m].length} 项</span></div>
+      <div class="cards">${groups[m].map(pubCard).join("")}</div>
+    </div>`).join("");
+  // site.json 里存的是 school/degree/period 等字段,渲染前统一适配成 when/title/sub/meta
+  const adEdu=e=>e.when?e:{when:e.period||"",title:e.degree||"",sub:[e.school,e.dept].filter(Boolean).join(" · "),
+    meta:[e.advisor?"导师:"+e.advisor:"",e.gpa?"GPA "+e.gpa:"",e.rank||"",e.direction?"研究方向:"+e.direction:"",e.courses?"课程:"+e.courses:""].filter(Boolean).join(" · ")};
+  const adIntern=e=>e.when?e:{when:e.period||"",title:e.role||"",sub:e.company||"",meta:[e.city,e.desc].filter(Boolean).join(" · ")};
+  const adAct=e=>e.when?e:{when:e.period||"",title:e.role||"",sub:e.org||"",meta:""};
+  document.getElementById("edu").innerHTML=(D.education||[]).map(adEdu).map(tlRow).join("");
+  document.getElementById("intern").innerHTML=(D.internships||[]).map(adIntern).map(tlRow).join("");
+  document.getElementById("activities").innerHTML=(D.activities||[]).map(adAct).map(tlRow).join("");
+  document.getElementById("honors").innerHTML=(D.honors||[]).map(h=>`<div class="honor">${esc(h.name)}<span class="d">${esc(h.date)}</span></div>`).join("");
+}
+// ── lightbox ──
+let LB={figs:[],i:0};
+function openLB(key,i){const figs=FIGMAP[key];if(!figs||!figs.length)return;LB={figs,i:i||0};lbShow();}
+function lbShow(){
+  const f=LB.figs[LB.i];if(!f)return;
+  document.getElementById("lbImg").src="covers/"+encodeURIComponent(f.fn);
+  document.getElementById("lbCap").textContent="";
+  document.getElementById("lbCnt").textContent=(LB.i+1)+" / "+LB.figs.length;
+  document.getElementById("lb").classList.add("on");
+}
+function lbStep(d){LB.i=(LB.i+d+LB.figs.length)%LB.figs.length;lbShow();}
+function lbClose(){document.getElementById("lb").classList.remove("on");}
+addEventListener("keydown",e=>{const on=document.getElementById("lb").classList.contains("on");if(!on)return;
+  if(e.key==="Escape")lbClose();if(e.key==="ArrowLeft")lbStep(-1);if(e.key==="ArrowRight")lbStep(1);});
+// ── KaTeX 公式渲染(创新点/实验结果里的 $...$ / $$...$$)──
+function typeset(n){
+  // KaTeX 是 defer 加载,还没就绪就每 250ms 重试(最多 20s),彻底消灭时序竞态
+  if(!window.renderMathInElement){if((n||0)<80)setTimeout(()=>typeset((n||0)+1),250);return;}
+  try{renderMathInElement(document.body,{delimiters:[
+    {left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false},
+    {left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true}],throwOnError:false});}catch(e){}
+}
+window.typeset=typeset;
+
+render(DATA);typeset();
+fetch("site.json").then(r=>r.ok?r.json():null).then(d=>{ if(d&&d.profile){
+  const byT={}; DATA.publications.forEach(p=>{byT[p.title]=p;});
+  (d.publications||[]).forEach(p=>{ const base=byT[p.title]||{}; if(!p.module)p.module=base.module||"其他"; if(!p.summary)p.summary=base.summary||""; if(!p.highlights)p.highlights=base.highlights||[]; });
+  render({interests:d.profile.interests||DATA.interests,publications:d.publications,education:d.education,internships:d.internships,activities:d.activities,honors:d.honors});
+  typeset();
+} }).catch(()=>{});
+
+// 动态 power-diagram / mesh 背景
+(function(){
+  const cv=document.getElementById("geo"),ctx=cv.getContext("2d");
+  const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches; let W,H,pts,DPR;
+  function size(){DPR=Math.min(devicePixelRatio||1,2);W=cv.clientWidth;H=cv.clientHeight;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+    const n=Math.max(26,Math.floor(W*H/22000));
+    pts=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.22,vy:(Math.random()-.5)*.22}));}
+  function step(){ctx.clearRect(0,0,W,H);
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+    const R=Math.min(W,H)*0.2;
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+      if(d<R){const al=(1-d/R)*0.22;ctx.strokeStyle=`rgba(95,199,222,${al})`;ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();}}
+    for(const p of pts){ctx.fillStyle="rgba(139,123,232,.55)";ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,7);ctx.fill();}
+    if(!reduce)requestAnimationFrame(step);}
+  size();step(); addEventListener("resize",()=>{size();if(reduce)step();});
+})();
+</script>

@@ -1,0 +1,290 @@
+<title>PaperRead</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;900&display=swap">
+<style>
+  :root{
+    --bg:#0E1219; --sf:#171B22; --sf2:#1D232D; --ln:#2A3140;
+    --ink:#E7E9EC; --soft:#A7B0C2; --fa:#6B7280;
+    --ac:#5FC7DE; --gr:#6FCF97; --gold:#E8C268; --red:#E07A7A;
+    --serif:"Noto Serif SC",Georgia,serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:16px;line-height:1.75}
+  a{color:var(--ac)}
+  ::selection{background:rgba(95,199,222,.25)}
+
+  /* ── hero ── */
+  #hero{position:relative;overflow:hidden;border-bottom:1px solid var(--ln)}
+  #geo{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+  .hero-in{position:relative;max-width:1020px;margin:0 auto;padding:4.5rem 1.4rem 3.2rem}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;color:var(--ac);font-weight:600}
+  h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.6rem,6vw,4rem);
+    margin:.35rem 0 .8rem;letter-spacing:.01em;text-wrap:balance}
+  h1 .thin{color:var(--ac)}
+  .tagline{font-size:1.12rem;color:var(--soft);max-width:36em;text-wrap:balance}
+  .tagline b{color:var(--ink);font-weight:600}
+
+  /* 终端直播窗 */
+  .term{margin:2.4rem 0 0;background:#0A0E14;border:1px solid var(--ln);border-radius:12px;
+    box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden}
+  .term-bar{display:flex;align-items:center;gap:.45rem;padding:.55rem .9rem;
+    background:var(--sf);border-bottom:1px solid var(--ln);font-size:.74rem;color:var(--fa)}
+  .term-bar i{width:10px;height:10px;border-radius:50%;background:var(--ln);display:inline-block}
+  .term-bar i:nth-child(1){background:#E0655F}.term-bar i:nth-child(2){background:var(--gold)}
+  .term-bar i:nth-child(3){background:var(--gr)}
+  .term-bar span{margin-left:.5rem}
+  .term-body{padding:1rem 1.2rem 1.2rem;font-family:var(--mono);font-size:.82rem;line-height:1.9;
+    color:var(--soft);overflow-x:auto;white-space:pre-wrap;word-break:break-word;min-height:15.5em}
+  .t-user{color:var(--ac)}
+  .t-ai{color:var(--ink)}
+  .t-tool{color:var(--fa)}
+  .t-ok{color:var(--gr)}
+  .t-warn{color:var(--gold)}
+  .cursor{display:inline-block;width:.55em;height:1.1em;background:var(--gr);
+    vertical-align:-0.18em;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.cursor{animation:none}}
+
+  /* ── 版式骨架 ── */
+  main{max-width:1020px;margin:0 auto;padding:0 1.4rem 5rem}
+  section{margin-top:4.2rem}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.55rem;margin:0 0 .4rem;text-wrap:balance}
+  h2::before{content:"";display:inline-block;width:.55em;height:.55em;border-radius:2px;
+    background:var(--ac);margin-right:.55rem;vertical-align:.05em}
+  .lede{color:var(--soft);max-width:44em;margin:0 0 1.6rem}
+  .lede b{color:var(--ink);font-weight:600}
+
+  /* 流程带 */
+  .flow{display:flex;gap:.5rem;flex-wrap:wrap;align-items:stretch;margin-top:1.2rem}
+  .flow .step{flex:1 1 150px;background:var(--sf);border:1px solid var(--ln);border-radius:10px;
+    padding:.75rem .9rem;position:relative}
+  .flow .step .k{font-size:.72rem;color:var(--ac);letter-spacing:.08em;font-weight:600}
+  .flow .step .n{font-weight:600;margin:.15rem 0 .1rem}
+  .flow .step .d{font-size:.8rem;color:var(--fa);line-height:1.55}
+  .flow .step.gate{border-color:var(--gold)}
+  .flow .step.gate .k{color:var(--gold)}
+
+  /* 双列卡 */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media (max-width:760px){.duo{grid-template-columns:1fr}}
+  .card{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:1.2rem 1.35rem}
+  .card h3{margin:0 0 .5rem;font-size:1.02rem;font-weight:600}
+  .card h3 .tag{font-size:.68rem;color:var(--ac);border:1px solid var(--ln);border-radius:4px;
+    padding:.08rem .45rem;margin-left:.5rem;font-weight:500;vertical-align:.12em}
+  .card p{margin:.3rem 0;color:var(--soft);font-size:.92rem}
+  .card ul{margin:.4rem 0 0;padding-left:1.2rem;color:var(--soft);font-size:.92rem}
+  .card li{margin:.28rem 0}
+  .card li b{color:var(--ink);font-weight:600}
+  .card li .g{color:var(--gr)}
+
+  /* 模块矩阵 */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:.8rem}
+  .mod{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:.85rem 1rem}
+  .mod .n{font-weight:600;font-size:.95rem}
+  .mod .d{font-size:.8rem;color:var(--fa);margin-top:.2rem;line-height:1.55}
+
+  /* 模型集群表 */
+  table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:1.2rem}
+  th,td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--ln)}
+  th{color:var(--fa);font-weight:500;font-size:.78rem;letter-spacing:.06em}
+  td:first-child{font-family:var(--mono);font-size:.84rem;color:var(--ac);white-space:nowrap}
+  td:nth-child(2){color:var(--soft)}
+  .tbl-wrap{overflow-x:auto}
+
+  /* 成果 */
+  .pubs{display:flex;flex-direction:column;gap:.55rem;margin-top:1.2rem}
+  .pub{display:flex;gap:.8rem;align-items:baseline;background:var(--sf);border:1px solid var(--ln);
+    border-radius:10px;padding:.7rem 1rem}
+  .pub .v{font-family:var(--mono);font-size:.76rem;color:var(--gr);white-space:nowrap;
+    border:1px solid var(--ln);border-radius:4px;padding:.1rem .5rem;flex-shrink:0}
+  .pub .v.rev{color:var(--gold)}
+  .pub .t{font-size:.92rem;color:var(--soft)}
+  .pub .t b{color:var(--ink);font-weight:600}
+
+  /* 数字条 */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem;margin-top:1.4rem}
+  .stat{background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:.9rem 1rem;text-align:center}
+  .stat .num{font-family:var(--serif);font-weight:900;font-size:1.9rem;color:var(--ac);
+    font-variant-numeric:tabular-nums;line-height:1.1}
+  .stat .lbl{font-size:.78rem;color:var(--fa);margin-top:.25rem}
+
+  footer{border-top:1px solid var(--ln);margin-top:4.5rem;padding:1.6rem 1.4rem 2.4rem;
+    text-align:center;color:var(--fa);font-size:.8rem}
+  footer .mono{font-family:var(--mono)}
+</style>
+
+<div id="hero">
+  <canvas id="geo"></canvas>
+  <div class="hero-in">
+    <div class="eyebrow">AI 自主科研工作站 · 独立开发</div>
+    <h1>PaperRead<span class="thin">·</span>把科研全流程交给多智能体集群</h1>
+    <p class="tagline">从一个 idea 到一篇可投稿论文:文献调研、方法设计、<b>真跑实验</b>、对抗改稿、图表生成、终稿评审——由一个以 Claude 为总控大脑、多模型按能力分工的集群<b>全自动完成</b>,人只在方向上拍板。</p>
+
+    <div class="term">
+      <div class="term-bar"><i></i><i></i><i></i><span>自主科研窗口 · pl_c4d008f86a《Ricci Flow 约束参数化》· 实时</span></div>
+      <div class="term-body" id="termfeed"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section>
+    <h2>一条流水线,从 idea 到论文</h2>
+    <p class="lede">每个课题一条流水线、一个常驻的自主 Claude 会话。它有 shell、能编排多台 GPU 机器、能召集其他付费模型开会;铁律写死在系统提示里:<b>先锁定 2025/2026 最新 SOTA 前 10 做基线,做出真超越才允许动笔写论文。</b></p>
+    <div class="flow">
+      <div class="step"><div class="k">立项</div><div class="n">锁定基线</div><div class="d">多源检索最新文献与榜单,SOTA 前 10 进对比集</div></div>
+      <div class="step"><div class="k">方法</div><div class="n">多模型开会</div><div class="d">发散 → 互评 → 总控综合拍板,岔路口绝不停下等人</div></div>
+      <div class="step"><div class="k">实验</div><div class="n">真跑 GPU</div><div class="d">多机编排长跑,论文数字只从 results.json 取,跑不出标 TBD 不造假</div></div>
+      <div class="step"><div class="k">写作</div><div class="n">对抗改稿</div><div class="d">写手与审稿模型多轮对抗,写作规范硬约束自检</div></div>
+      <div class="step gate"><div class="k">门禁</div><div class="n">评审 ≥95 分</div><div class="d">三评委 × 10 维实质评分,均分 ≥95 且无单维 &lt;85 才许投稿</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>怎么让 AI 不糊弄</h2>
+    <p class="lede">全自动最大的敌人不是能力,是"看起来完成了"。PaperRead 用三个相互独立的机制把关:</p>
+    <div class="duo">
+      <div class="card">
+        <h3>判官 Judge<span class="tag">产出实质判定</span></h3>
+        <p>每份产出交给强模型做实质判断,不写死规则。处置只有五种:放行、垃圾重做、修一次重跑、诚实标注 TBD、上报异常后走最稳路线继续。实测能把「FID=390 当胜出」这类糊弄判成重做。</p>
+      </div>
+      <div class="card">
+        <h3>监工 Warden<span class="tag">只催促,不改方向</span></h3>
+        <p>持续读屏:发呆自动催、输出截断自动踢、额度恢复自动唤醒;发现丢了根基数学工具或拿玩具数据充实验,才强制拉回。正常换路线、换数据集不干预。</p>
+      </div>
+      <div class="card">
+        <h3>终稿门禁<span class="tag">评实质,不评文字</span></h3>
+        <p>送审的不是全文,而是十个维度的实质自述(创新点、理论支撑、实验数据、可复现性、局限诚实度……)。不过线就按每维的「要更强补什么」去补实验补证明,循环到过线,禁止刷分。</p>
+      </div>
+      <div class="card">
+        <h3>事件溯源 + 心跳<span class="tag">集群地基</span></h3>
+        <p>所有状态变化镜像成 append-only 事件流,可回放重建;常驻心跳线程照看全部流水线,卡死自动止血,重启自动续跑。87 个单元测试全绿。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>模型集群:角色绑能力,不绑模型</h2>
+    <p class="lede">Agent 只声明「我需要什么能力」,路由器从当前可用模型里选最强的一个,失效自动切换下一家——任何一家挂掉,系统不瘫。</p>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>模型</th><th>集群角色</th><th>选择原因</th></tr></thead>
+      <tbody>
+        <tr><td>Claude Fable 5 / Opus 5</td><td>总控大脑 · 代码 · 最终综合</td><td>长程规划与代码可信度最高,唯一被授权写代码的模型</td></tr>
+        <tr><td>GPT-5.6-sol</td><td>推理 · 审稿 · 数学</td><td>找漏洞与数学推导最强,承担对抗评审</td></tr>
+        <tr><td>Gemini 3.5 Flash</td><td>长文 · 发散生成</td><td>超长上下文、速度快、成本低</td></tr>
+        <tr><td>MiniMax-M3</td><td>文献调研 · 中文写作</td><td>1M 上下文读长论文,中文最好</td></tr>
+        <tr><td>GLM-5.2 / DeepSeek</td><td>代码生成 · 备用推理</td><td>并行分担代码产出,失效转移备份</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>二十余个模块,同一套地基</h2>
+    <div class="grid">
+      <div class="mod"><div class="n">自动写作流水线</div><div class="d">idea → 可投稿论文全流程,九阶段</div></div>
+      <div class="mod"><div class="n">网页自主窗口</div><div class="d">Claude Code 会话搬上网页,持久、可打断、直播转发</div></div>
+      <div class="mod"><div class="n">AI 审稿</div><div class="d">多模型模拟审稿人,严苛意见与改法</div></div>
+      <div class="mod"><div class="n">论文精读</div><div class="d">全文深读,创新点/实验结果结构化提炼</div></div>
+      <div class="mod"><div class="n">领域调研</div><div class="d">多源检索 + 交叉验证,SOTA 榜单成文</div></div>
+      <div class="mod"><div class="n">流程图引擎</div><div class="d">LLM→图 IR→自动布局,17 秒出投稿级图,可导出可编辑 PPTX</div></div>
+      <div class="mod"><div class="n">多机实验编排</div><div class="d">自动挑空闲 GPU、脱离终端长跑、指标回收</div></div>
+      <div class="mod"><div class="n">数字一致性校验</div><div class="d">图表数字与 results.json 逐一对账</div></div>
+      <div class="mod"><div class="n">idea 发现</div><div class="d">四模型分应用域发散,查重去同质化</div></div>
+      <div class="mod"><div class="n">学术主页生成</div><div class="d">传一个 PDF,自动提流程图/结果图/创新点成卡片</div></div>
+      <div class="mod"><div class="n">协作者门户</div><div class="d">科研窗口 HTML 直播 + 文件下载 + 按 token 计费</div></div>
+      <div class="mod"><div class="n">用量台账</div><div class="d">每次模型调用入账,多家订阅压榨着用</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>结果</h2>
+    <div class="pubs">
+      <div class="pub"><span class="v">CVPR Findings 2026</span><span class="t"><b>RealDiffusion</b>:物理约束注意力的多角色故事书生成</span></div>
+      <div class="pub"><span class="v">AAAI 2026</span><span class="t"><b>G-IR</b>:面向学习的几何图像表示(共同一作)</span></div>
+      <div class="pub"><span class="v">ISVC 2025</span><span class="t"><b>ColonMeshNet</b>:局部-全局上下文融合的 3D 结肠分割</span></div>
+      <div class="pub"><span class="v rev">在投 ×4</span><span class="t">文档去卷曲 / 约束半离散最优传输 / 多图叙事幻觉抑制 / 联邦医学影像</span></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">9</div><div class="lbl">流水线阶段</div></div>
+      <div class="stat"><div class="num">6</div><div class="lbl">模型协同</div></div>
+      <div class="stat"><div class="num">≥95</div><div class="lbl">终稿门禁分</div></div>
+      <div class="stat"><div class="num">87</div><div class="lbl">集群单测全绿</div></div>
+      <div class="stat"><div class="num">10万+</div><div class="lbl">行代码,全程 AI 协作</div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  PaperRead — 独立开发的 AI 自主科研工作站 · 本页由 <span class="mono">Claude Code</span> 与作者协作完成
+</footer>
+
+<script>
+/* 终端直播:回放一段真实工作流(打字机节奏) */
+(function(){
+  var lines=[
+    ['t-user','❯ 全新流水线《Ricci Flow 约束参数化》:双层优化——外层优化 η(共形结构系数)满足点/线/圆/任意形状约束,内层 Ricci 流优化 u(共形因子)。先锁 2025/2026 SOTA 前 10,真跑不造假。开始。'],
+    ['t-ai','● 已收到铁律:先锁基线 → 真超越再写作 → 自己不写代码全派集群 → 终稿 10 维评审 ≥95 分。开始自主推进。'],
+    ['t-tool','  ⎿ 检索 arXiv 2025/2026 · constrained surface parameterization / discrete Ricci flow …'],
+    ['t-tool','  ⎿ group_discuss(4 模型发散+互评) → 总控综合:锁定 SOTA 前 10 对比集,写入 DRIVER_STATE.md'],
+    ['t-ai','● 基线已锁。派集群实现内层离散 Ricci flow 求解器,本机真跑收敛性实验。'],
+    ['t-tool','  ⎿ judge(实验产出) → continue · 能量单调 ✓ 约束误差 3.2e-6 ✓'],
+    ['t-ok','✓ 阶段推进:方法理论化 → 下一步:外层 η 的约束投影与收敛性证明'],
+    ['t-warn','✳ 监工在岗:发呆自动催促 · 数字只认 results.json · 全程可插话打断']
+  ];
+  var el=document.getElementById('termfeed');
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){
+    el.innerHTML=lines.map(function(l){return '<div class="'+l[0]+'">'+l[1]+'</div>';}).join('');
+    return;
+  }
+  var i=0;
+  function next(){
+    if(i>=lines.length){el.insertAdjacentHTML('beforeend','<span class="cursor"></span>');return;}
+    var d=document.createElement('div');d.className=lines[i][0];el.appendChild(d);
+    var txt=lines[i][1],j=0;
+    var t=setInterval(function(){
+      j+=3;d.textContent=txt.slice(0,j);
+      if(j>=txt.length){clearInterval(t);i++;setTimeout(next,260);}
+    },14);
+  }
+  setTimeout(next,400);
+})();
+
+/* power-diagram 动态背景(与 PaperRead 全线一致的视觉签名) */
+(function(){
+  var cv=document.getElementById('geo'),ctx=cv.getContext('2d');
+  if(!ctx)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var W,H,pts,DPR;
+  function size(){
+    DPR=Math.min(devicePixelRatio||1,2);
+    W=cv.clientWidth;H=cv.clientHeight;
+    cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);
+    pts=[];for(var i=0;i<Math.max(18,W/70);i++)
+      pts.push({x:Math.random()*W,y:Math.random()*H,
+        vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25});
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i];
+      if(!reduce){p.x+=p.vx;p.y+=p.vy;
+        if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;}
+      for(var j=i+1;j<pts.length;j++){
+        var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d2=dx*dx+dy*dy;
+        if(d2<150*150){
+          ctx.strokeStyle='rgba(95,199,222,'+(0.16*(1-d2/22500))+')';
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+        }
+      }
+      ctx.fillStyle='rgba(95,199,222,.5)';
+      ctx.beginPath();ctx.arc(p.x,p.y,1.6,0,7);ctx.fill();
+    }
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  size();addEventListener('resize',function(){size();if(reduce)frame();});
+  frame();
+})();
+</script>

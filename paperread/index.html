@@ -226,14 +226,14 @@
 /* 终端直播:回放一段真实工作流(打字机节奏) */
 (function(){
   var lines=[
-    ['t-user','❯ 全新流水线《Ricci Flow 约束参数化》:双层优化——外层优化 η(共形结构系数)满足点/线/圆/任意形状约束,内层 Ricci 流优化 u(共形因子)。先锁 2025/2026 SOTA 前 10,真跑不造假。开始。'],
-    ['t-ai','● 已收到铁律:先锁基线 → 真超越再写作 → 自己不写代码全派集群 → 终稿 10 维评审 ≥95 分。开始自主推进。'],
-    ['t-tool','  ⎿ 检索 arXiv 2025/2026 · constrained surface parameterization / discrete Ricci flow …'],
-    ['t-tool','  ⎿ group_discuss(4 模型发散+互评) → 总控综合:锁定 SOTA 前 10 对比集,写入 DRIVER_STATE.md'],
-    ['t-ai','● 基线已锁。派集群实现内层离散 Ricci flow 求解器,本机真跑收敛性实验。'],
-    ['t-tool','  ⎿ judge(实验产出) → continue · 能量单调 ✓ 约束误差 3.2e-6 ✓'],
-    ['t-ok','✓ 阶段推进:方法理论化 → 下一步:外层 η 的约束投影与收敛性证明'],
-    ['t-warn','✳ 监工在岗:发呆自动催促 · 数字只认 results.json · 全程可插话打断']
+    ['t-user','❯ 流水线《Ricci Flow 约束参数化》:双层优化——外层优化 η(共形结构系数)满足点/线/圆/任意形状约束,内层 Ricci 流优化 u(共形因子)。真跑不造假。'],
+    ['t-ai','● 阶段汇报:复合步 SQP 求解器已就位,合成集 L1 全五族真跑通过——点约束残差 2.2e-13,线约束(Dijkstra 路径拉直)残差 1.3e-15,全部 0 翻转。'],
+    ['t-tool','  ⎿ 拍板(多模型会议一致):qc_max 离群是固定剖分精确约束的结构性代价 → 逐面 |μ|² 畸变正则 + 边界 H¹ 正则;否决 Ptolemy 翻转(毁理论)'],
+    ['t-tool','  ⎿ 派集群实施 a_min × λ_μ 12 配置消融 → 可行性–畸变 Pareto 前沿 + 失败分类'],
+    ['t-ai','● 发布级作图工具已就位(plots.py / make_figures.py,paper_style),点线约束前后对比图已出,待 SQP 结果重生成全套。'],
+    ['t-tool','  ⎿ judge(实验产出) → continue · 能量单调 ✓ 数字只从 results.json 取 ✓'],
+    ['t-ok','✓ 下一批数:圆/形状约束修复后跑全五族 → 12 配置消融(约 1 小时) → L2/L3 与 2000 顶点规模'],
+    ['t-warn','✳ 监工在岗:发呆自动催促 · 造假实验强制拉回 · 终稿须过 10 维评审 ≥95 分']
   ];
   var el=document.getElementById('termfeed');
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
